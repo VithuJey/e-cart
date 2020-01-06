@@ -1,0 +1,136 @@
+img{
+  width: 48%;
+  padding: 2%;
+  border-radius: 25px;
+}
+body{
+  background: #faf3ef;
+}
+
+
+body{
+  background: #faf3ef;
+}
+
+.pimg{
+  position: relative;
+  width: 70%;
+  margin-top:10%;
+  left: 15%;
+  border-radius: 40px;
+}
+
+h2{
+  text-align: center;
+  font-size: 36px;
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+}
+.pprecio{
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.poferta{
+  position: relative;
+  bottom: 10px;
+  background: red;
+  color:white;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 4px;
+  padding: 3px;
+}
+.pprice2{
+  font-weight: bold;
+  font-size: 38px;
+}
+.pcontenido{
+  margin-top:-12%;
+  padding: 12%;
+  font-size:30px;
+  font-family: sans-serif;
+}
+/**boton comprar**/
+.pboton {
+  position: relative;
+  bottom:75px;
+  left: 38%;
+  display: inline-block;
+  padding: 3% 5%;
+  font-size: 150%;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+}
+
+.pboton:hover {
+  background-color: #3e8e41;
+  text-decoration: none;
+  color: white;
+}
+
+.pboton:active {
+  background-color: #3e8e41;
+  transform: translateY(2px);
+}
+/**boton Volver**/
+.pbotonvolver {
+  position: fixed;
+  top:3%;
+  left: 2%;
+  display: inline-block;
+  padding: 1.5% 3%;
+  font-size: 100%;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+}
+
+.pbotonvolver:hover {background-color: #3e8e41}
+
+.pbotonvolver:active {
+  background-color: #3e8e41;
+  transform: translateY(2px);
+}
+
+
+
+/**boton Volver**/
+.pbotoncarro {
+  position: fixed;
+  top:3%;
+  right: 2%;
+  display: inline-block;
+  padding: 1.5% 3%;
+  font-size: 100%;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+}
+
+
+.pbotoncarro:active {
+  background-color: #3e8e41;
+  transform: translateY(2px);
+}
+.btn-success {
+	margin : 10px;
+}
+

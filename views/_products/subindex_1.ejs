@@ -1,0 +1,23 @@
+<%- include("../_partials/header") %>
+<div style='width:100%;height:90px;background:white;position:fixed;top:0px;left:0px;z-index:1'>
+<button class="pbotonvolver" onclick="window.location.href='/'">Volver</button>
+<button class="pbotoncarro" onclick="window.location.href='/cart/show'">Mostrar pedido</button>
+</div>
+<img src="/images/01.jpg" class="pimg">
+<div class="texto">
+
+  <h2>Lorem ipsum dolor sit amet.</h2>
+  <p class=pprecio>
+    <span class="pprice1">$92.00</span>
+    <span class="pprice2">$79.00</span>
+    <span class="poferta">Oferta</span>
+  </p>
+  <p class=pcontenido>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    Neque nostrum obcaecati earum unde! Quisquam at eaque ab
+    dignissimos impedit? Quo voluptatum fugiat molestiae nulla asperiores.
+  </p>
+</div>
+
+<a class="pboton" href="/cart?name=1&price1=92&price2=79&image=01.jpg">Agreagar a la orden</a>
+<%- include("../_partials/footer") %>

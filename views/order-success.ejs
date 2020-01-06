@@ -1,0 +1,84 @@
+<% include _partials/header %>
+<button class="btn btn-success" onclick="window.location.href='/'">Volver</button>
+<div class="texto">
+<h2>Orders Details</h2>
+<%if (typeof order.body !== "undefined" || order.body != null){%>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12">
+        <div>
+          <table id="myCart">
+            <thead>
+			<tr>
+				<th colspan = 2>Id</th>
+				<th colspan = 1>Table</th>
+				<th colspan = 1>Payment</th>
+				<th colspan = 2>Name</th>
+			</tr>
+			<tr>
+				<td colspan = 2><%= order.id %></td>
+				<td colspan = 1><%= order.table %></td>
+				<td colspan = 1><% if (order.paymentType == 1) { %> Coupon <% } %><% if (order.paymentType == 0){ %> Cash <% } %></td>
+				<td colspan = 2><%= order.name %></td>
+			</tr>
+            <tr>
+              <th>Numero de producto</th>
+              <th></th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th></th>
+              <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <% var subTotal = 0; %>
+            <% var productTotalPrice = 0; %>
+            <% order.body.forEach(function(product){ %>
+            <% var sub = parseFloat(product.productQuantity * product.productPrice2).toFixed(2) %>
+            <% subTotal += +sub %>
+            <% productTotalPrice = (product.productQuantity * product.productPrice2).toFixed(2) %>
+
+            <tr>
+
+              <td class="product-name">
+                <h3><%=product.productName%></h3>
+              </td>
+              <td><img style="width: 200px;" src="/images/<%=product.productImage%>"></td>
+
+              <td class="price">$<%=product.productPrice2%></td>
+
+              <td>
+                <%=product.productQuantity%>
+                <a href="/cart/decrease-quantity?product=<%=product.productName%>"><span class="btn btn-primary">-</span></a>
+                <a href="/cart/increase-quantity?product=<%=product.productName%>"><span class="btn btn-primary">+</span></a>
+              </td>
+
+              <td>
+                <a href="/cart/delete?product=<%=product.productName%>" class="btn btn-danger">Eliminar Articulo</a>
+              </td>
+
+              <td class="total">$<%=productTotalPrice%></td>
+            </tr>
+            <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%}else{%>
+<section >
+  <div class="container">
+    <div>
+      <div>
+        <h2 >La orden esta vacia</h2>
+      </div>
+    </div>
+  </div>
+</section>
+<%}%>
+</div>
+<% include _partials/footer %>

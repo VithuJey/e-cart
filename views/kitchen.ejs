@@ -1,0 +1,81 @@
+<% include _partials/header %>
+<script src="../socket.io/socket.io.js"></script>
+<script>
+	let socket  = io.connect();
+	
+	window.onload = () => {
+		let table = document.getElementById("orders-body");
+		socket.on("new-order", function(data) {
+			let row = "<tr style='background:#d3ead366'><td>-</td><td>"+data.id+"</td><td>"+data.name+"</td><td>"+data.table+"</td><td>Pending</td><td><a href='/cart/view?orderId="+data.id+"' target = '_blank' class='btn btn-info'>View</a><a href='/cart/cancel?orderId="+data.id+"' class='btn btn-danger'>Cancel</a><a href='/cart/complete?orderId="+data.id+"' class='btn btn-success'>Complete</a></td></tr>";
+			table.innerHTML = row + table.innerHTML;
+		});
+	}
+</script>
+<style>
+.btn {
+	margin : 10px;
+}
+</style>
+<a class="btn btn-success" href="/cart/kitchen/logout" style='float:right'>Log Out</a>
+<br>
+<h2>Total Orders</h2>
+<br>
+<section>
+  <div class="container" style='text-align:center'>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12">
+        <div>
+          <table id="order" style='width : 90%'>
+            <thead>
+            <tr>
+              <th>Sr No. </th>
+              <th>Order Id</th>
+              <th>Name</th>
+              <th>Table</th>
+              <th>Payment</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody id='orders-body'>
+			<%
+				var orderCount = 0;
+				for (x in orders) {
+					orderCount++;
+			%>
+				<tr>
+					<td><%= orderCount %></td>
+					<td><%= orders[x].id %></td>
+					<td><%= orders[x].name %></td>
+					<td><%= orders[x].table %></td>
+					<td><% if (orders[x].paymentType == 1) { %> Coupon <% } %><% if (orders[x].paymentType == 0){ %> Cash <% } %></td>
+					<td>
+						<% if (! orders[x].status) {%> 
+							Pending 
+						<% } %>
+						<% if (orders[x].status && orders[x].status == 2){ %> 
+							Cancelled 
+						<% } %>
+						<% if (orders[x].status && orders[x].status == 1) { %> Completed <% } %>
+ 					</td>
+					<td><a target = "blank" href="/cart/view?orderId=<%= orders[x].id %>" class='btn btn-info'>View</a><a href="/cart/cancel?orderId=<%= orders[x].id %>" class='btn btn-danger'>Cancel</a><a href="/cart/complete?orderId=<%= orders[x].id %>" class='btn btn-success'>Complete</a>
+					</td>
+				</tr>
+			<%
+				}
+			%>
+			</tbody>
+		  </table>
+		</div>
+	  </div>
+	</div>
+  </div>
+</section>
+
+<style>
+tr {
+	border-bottom : 1px solid grey;
+	height : 50px;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>

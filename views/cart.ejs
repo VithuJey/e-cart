@@ -1,0 +1,90 @@
+<% include _partials/header %>
+<button class="btn btn-success" onclick="window.location.href='/'">Volver</button>
+<% include _forms/order %>
+<div class="texto">
+<br>
+<h2>Detalles de la orden</h2>
+<br>
+<%if (typeof cart !== "undefined" || cart != null || cart){%>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12">
+        <div>
+          <table id="myCart">
+            <thead>
+            <tr>
+              <th>Numero de producto</th>
+              <th></th>
+              <th>Precio</th>
+              <th style='min-width:100px;'>Cantidad</th>
+              <th></th>
+              <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <% var subTotal = 0; %>
+            <% var productTotalPrice = 0; %>
+            <% 
+				if (! cart)
+					cart = [];
+				cart.forEach(function(product){ %>
+            <% var sub = parseFloat(product.productQuantity * product.productPrice2).toFixed(2) %>
+            <% subTotal += +sub %>
+            <% productTotalPrice = (product.productQuantity * product.productPrice2).toFixed(2) %>
+
+            <tr>
+
+              <td class="product-name">
+                <h3><%=product.productName%></h3>
+              </td>
+              <td><img style="width: 200px;" src="/images/<%=product.productImage%>"></td>
+
+              <td class="price">$<%=product.productPrice2%></td>
+
+              <td>
+                <%=product.productQuantity%>
+                <a href="/cart/decrease-quantity?product=<%=product.productName%>"><span class="btn btn-primary">-</span></a>
+                <a href="/cart/increase-quantity?product=<%=product.productName%>"><span class="btn btn-primary">+</span></a>
+              </td>
+
+              <td>
+                <a href="/cart/delete?product=<%=product.productName%>" class="btn btn-danger">Eliminar Articulo</a>
+              </td>
+
+              <td class="total">$<%=productTotalPrice%></td>
+            </tr>
+            <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%}else{%>
+<section >
+  <div class="container">
+    <div>
+      <div>
+        <h2 >La orden esta vacia</h2>
+      </div>
+    </div>
+  </div>
+</section>
+<%}%>
+</div>
+<% include _partials/footer %>
+
+
+<style>
+#myCart_length,#myCart_filter{
+	display:none;
+}
+@media (min-width: 768px)
+	.col-md-12 {
+		min-width : 780px;
+	}
+}
+</style>
